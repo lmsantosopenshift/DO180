@@ -1,0 +1,17 @@
+Hacer Login al servidor como usuario developer. Crear el proyecto storage-volumes.
+En ese proyecto crear un deployment llamado db-pod de la imagen registry.redhat.io/rhel8/mysql-80 (trampa puerto 3306). 
+Asignar las variables correspondientes al deployment MYSQL_USER=user1, MYSQL_PASSWORD=mypa55w0rd, MYSQL_DATABASE=items y 
+darle acceso externo al deployment. Añadir un pvc de 1 Gib llamado db-pod-pvc al deployment que dé persistencia a la BBDD 
+el nombre del volumen será pepe (buscar donde guarda el nombre…). Crear un configmap init-db-cm para inicializar la BBDD 
+con el script contenido en el archivo init-db.sql (En github) y montarlo en el directorio /tmp/init-db del deployment 
+(nombre del volumen mysql-pod-vol). Una vez cargada la BBDD eliminar el volumen usado para inicializarla.
+Crear un query-db-pod con la imagen quay.io/luismg26/do180-dbinit para probar la BBDD. 
+
+Parar CRC, arrancar y versificar persistencia de datos, volúmenes etc
+
+Extra:
+
+Eliminar el deployment. Verificar que el PVC sigue existiendo. 
+Crear nuevo deployment con nombre db-pod-2 y volver a atachar el pvc al deployment para confirmar la persistencia 
+de datos. Volver a crear el pod query y probar.
+
